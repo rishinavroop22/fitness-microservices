@@ -50,7 +50,7 @@ public class IdentityPropagationFilter implements WebFilter {
                 .flatMap(chain::filter);
     }
 
-    static String department(Jwt jwt) {
+    public static String department(Jwt jwt) {
         String department = jwt.getClaimAsString("department");
         return department == null || department.isBlank() ? DEFAULT_DEPARTMENT : department.trim().toUpperCase();
     }

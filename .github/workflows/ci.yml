@@ -15,7 +15,7 @@ jobs:
           java-version: "21"
           cache: maven
       - name: Build and test all Spring Boot services
-        run: mvn -B verify
+        run: mvn -B verify --fail-at-end
 
   ai-agent-service:
     runs-on: ubuntu-latest
