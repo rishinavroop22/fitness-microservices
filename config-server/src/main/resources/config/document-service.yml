@@ -1,0 +1,35 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:5432/kb_documents
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: 5672
+    username: ${RABBITMQ_USER:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+knowledge:
+  storage:
+    path: ${DOCUMENT_STORAGE_PATH:./document-storage}
+  extraction:
+    max-characters: 5000000
+  messaging:
+    exchange: knowledge.exchange
+    ingest-queue: document.ingest.queue
+    delete-queue: document.delete.queue
+    status-queue: document.status.queue
+    ingest-routing-key: document.ingest
+    delete-routing-key: document.delete
+    status-routing-key: document.status

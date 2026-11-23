@@ -1,0 +1,31 @@
+spring:
+  cloud:
+    config:
+      enabled: false
+  datasource:
+    url: jdbc:h2:mem:documents;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  rabbitmq:
+    listener:
+      simple:
+        auto-startup: false
+eureka:
+  client:
+    enabled: false
+knowledge:
+  storage:
+    path: ${java.io.tmpdir}/kb-test-storage
+  extraction:
+    max-characters: 100000
+  messaging:
+    exchange: knowledge.exchange
+    ingest-queue: document.ingest.queue
+    delete-queue: document.delete.queue
+    status-queue: document.status.queue
+    ingest-routing-key: document.ingest
+    delete-routing-key: document.delete
+    status-routing-key: document.status
