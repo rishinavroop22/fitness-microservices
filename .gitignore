@@ -1,0 +1,11 @@
+.idea/
+*.iml
+.vscode/
+.env
+target/
+node_modules/
+dist/
+__pycache__/
+.pytest_cache/
+chroma-data/
+document-storage/

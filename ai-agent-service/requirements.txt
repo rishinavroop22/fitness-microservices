@@ -1,0 +1,12 @@
+fastapi==0.165.0
+uvicorn[standard]==0.54.0
+pydantic-settings==2.16.3
+aio-pika==10.2.3
+langchain-core==1.8.4
+langchain-text-splitters==1.1.3
+langgraph==1.2.24
+langchain-chroma==1.1.0
+chromadb==1.5.9
+langchain-google-genai==4.5.2
+langchain-mcp-adapters==0.3.2
+mcp==1.30.0

@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8181/realms/knowledge-assistant}
+          jwk-set-uri: ${KEYCLOAK_JWKS_URI:http://localhost:8181/realms/knowledge-assistant/protocol/openid-connect/certs}
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: user-service
+              uri: lb://USER-SERVICE
+              predicates:
+                - Path=/api/users/**
+            - id: document-service
+              uri: lb://DOCUMENT-SERVICE
+              predicates:
+                - Path=/api/documents/**,/api/knowledge-gaps/**
+            - id: assistant-service
+              uri: lb://ASSISTANT-SERVICE
+              predicates:
+                - Path=/api/chat/**
+  codec:
+    max-in-memory-size: 20MB
+
+gateway:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
